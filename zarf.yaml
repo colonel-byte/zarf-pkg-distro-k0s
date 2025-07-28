@@ -1,0 +1,109 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/zarf-dev/zarf/main/zarf.schema.json
+kind: ZarfPackageConfig
+metadata:
+  name: distro-k0s
+  version: "###ZARF_PKG_TMPL_VERSION###"
+  source: https://github.com/colonel-byte/zarf-pkg-distro-k0s
+  annotations:
+    org.opencontainers.image.source: "https://github.com/colonel-byte/zarf-pkg-distro-k0s"
+    org.opencontainers.image.description: Zarf package for deploying k0s
+components:
+  - name: binary
+    required: true
+    files:
+      - source: target/k0s
+        target: /var/lib/k0s/bin/k0s
+        shasum: "###ZARF_PKG_TMPL_K0S_SHA_AMD64###"
+        executable: true
+    only:
+      cluster:
+        architecture: amd64
+    actions:
+      onCreate:
+        before:
+          - cmd: |-
+              rm -rf     target
+              mkdir -p   target
+              curl -L -o target/k0s https://github.com/k0sproject/k0s/releases/download/###ZARF_PKG_TMPL_K0S_VERSION###/k0s-###ZARF_PKG_TMPL_K0S_VERSION###-amd64
+              chmod +x   target/k0s
+            description: pull k0s binary
+      onDeploy:
+        before:
+          - cmd: if [ "$(uname -m)" != "x86_64" ]; then echo "this package architecture is amd64, but the target system has a different architecture. These architectures must be the same" && exit 1; fi
+            description: Check that the host architecture matches the package architecture
+            maxRetries: 0
+          - cmd: ./zarf internal is-valid-hostname
+            maxRetries: 0
+            description: Check if the current system has a, RFC1123 compliant hostname
+  - name: binary
+    required: true
+    files:
+      - source: target/k0s
+        target: /var/lib/k0s/bin/k0s
+        shasum: "###ZARF_PKG_TMPL_K0S_SHA_ARM64###"
+        executable: true
+    only:
+      cluster:
+        architecture: arm64
+    actions:
+      onCreate:
+        before:
+          - cmd: |-
+              rm -rf     target
+              mkdir -p   target
+              curl -L -o target/k0s https://github.com/k0sproject/k0s/releases/download/###ZARF_PKG_TMPL_K0S_VERSION###/k0s-###ZARF_PKG_TMPL_K0S_VERSION###-arm64
+              chmod +x   target/k0s
+            description: pull k0s binary
+      onDeploy:
+        before:
+          - cmd: if [ "$(uname -m)" != "x86_64" ]; then echo "this package architecture is amd64, but the target system has a different architecture. These architectures must be the same" && exit 1; fi
+            description: Check that the host architecture matches the package architecture
+            maxRetries: 0
+          - cmd: ./zarf internal is-valid-hostname
+            maxRetries: 0
+            description: Check if the current system has a, RFC1123 compliant hostname
+  - name: images
+    required: true
+    only:
+      cluster:
+        architecture: amd64
+    files:
+      - target: /var/lib/k0s/images
+        source: target
+    actions:
+      onCreate:
+        before:
+          - description: pull images
+            cmd: |-
+              rm -rf   target
+              mkdir -p target
+              echo ""
+
+              for img in `cat ./files/airgap-images-list.txt | sort`; do
+                export TAR="$(echo $img | sed -E 's/\//_/g; s/:.+$//g').tar"
+                echo "pulling $img"
+                ./zarf tools registry pull  --platform "linux/amd64" $img ./target/$TAR
+              done
+  - name: images
+    required: true
+    only:
+      cluster:
+        architecture: arm64
+    files:
+      - target: /var/lib/k0s/images
+        source: target
+    actions:
+      onCreate:
+        before:
+          - description: pull images
+            cmd: |-
+              rm -rf   target
+              mkdir -p target
+              echo ""
+
+              for img in `cat ./files/airgap-images-list.txt | sort`; do
+                export TAR="$(echo $img | sed -E 's/\//_/g; s/:.+$//g').tar"
+                echo "pulling $img"
+                ./zarf tools registry pull  --platform "linux/arm64" $img ./target/$TAR
+              done
