@@ -16,6 +16,9 @@ components:
         target: /var/lib/k0s/bin/k0s
         shasum: "###ZARF_PKG_TMPL_K0S_SHA_AMD64###"
         executable: true
+      - source: profile/zarf-pkg-k0s.sh
+        target: /etc/profile.d/zarf-pkg-k0s.sh
+        executable: true
     only:
       cluster:
         architecture: amd64
@@ -42,6 +45,9 @@ components:
       - source: target/k0s
         target: /var/lib/k0s/bin/k0s
         shasum: "###ZARF_PKG_TMPL_K0S_SHA_ARM64###"
+        executable: true
+      - source: profile/zarf-pkg-k0s.sh
+        target: /etc/profile.d/zarf-pkg-k0s.sh
         executable: true
     only:
       cluster:
