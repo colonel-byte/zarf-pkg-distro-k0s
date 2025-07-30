@@ -21,7 +21,7 @@ jobs:
           # https://git-scm.com/docs/git-describe#_examples
           # TL;DR this will only hit the non-tagged versions
           tags: '*-g*'
-          keep-n-tagged: 3
+          keep-n-tagged: 0
           token: '${{ secrets.GITHUB_TOKEN }}'
 
       - name: Validate images
