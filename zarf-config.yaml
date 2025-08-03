@@ -10,6 +10,6 @@ package:
       k0s_sha_amd64: dc2383ec89ea023dfa69681116680d9e041fd53c0f038b294d3f2e452d537ff2
       k0s_sha_arm64: 625d89c00e8236b812a24955894077188e91213e9d1dc9440f0e4e6e6db53ffb
       # renovate: datasource=github-releases depName=k0sproject/k0sctl versioning=regex:^v(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)$
-      k0sctl_version: v0.25.0
-      k0sctl_sha_amd64: e511898dab629ab285529eeff4160a0c2b825a8ac305fe4bc6775b34398e831d
-      k0sctl_sha_arm64: 8e17b7b45d0495111da684e22f4f274c91d7c114f0ed438410810eeb35914dfb
+      k0sctl_version: v0.25.1
+      k0sctl_sha_amd64: 3ebe6833e600afa79a1a51d2537364db88ac2fab85827cb1c75909331190ff09
+      k0sctl_sha_arm64: 59fef485cccc6211cc752ba22869b1b970af8db3e5ec648edff816bb06c8818a
