@@ -78,6 +78,11 @@ components:
       - target: /var/lib/k0s/images
         source: target
     actions:
+      onDeploy:
+        before:
+          - description: remove existing cached images
+            cmd: |-
+              rm -rf /var/lib/k0s/images
       onCreate:
         before:
           - description: pull images
@@ -100,6 +105,11 @@ components:
       - target: /var/lib/k0s/images
         source: target
     actions:
+      onDeploy:
+        before:
+          - description: remove existing cached images
+            cmd: |-
+              rm -rf /var/lib/k0s/images
       onCreate:
         before:
           - description: pull images
@@ -113,3 +123,41 @@ components:
                 echo "pulling $img"
                 ./zarf tools registry pull  --platform "linux/arm64" $img ./target/$TAR
               done
+  - name: k0sctl-binary
+    required: false
+    files:
+      - source: target/k0sctl
+        target: /var/lib/k0s/bin/k0sctl
+        shasum: "###ZARF_PKG_TMPL_K0SCTL_SHA_AMD64###"
+        executable: true
+    only:
+      cluster:
+        architecture: amd64
+    actions:
+      onCreate:
+        before:
+          - cmd: |-
+              rm -rf     target
+              mkdir -p   target
+              curl -L -o target/k0sctl https://github.com/k0sproject/k0sctl/releases/download/###ZARF_PKG_TMPL_K0SCTL_VERSION###/k0sctl-linux-amd64
+              chmod +x   target/k0sctl
+            description: pull k0sctl binary
+  - name: k0sctl-binary
+    required: false
+    files:
+      - source: target/k0sctl
+        target: /var/lib/k0s/bin/k0sctl
+        shasum: "###ZARF_PKG_TMPL_K0SCTL_SHA_ARM64###"
+        executable: true
+    only:
+      cluster:
+        architecture: arm64
+    actions:
+      onCreate:
+        before:
+          - cmd: |-
+              rm -rf     target
+              mkdir -p   target
+              curl -L -o target/k0sctl https://github.com/k0sproject/k0sctl/releases/download/###ZARF_PKG_TMPL_K0SCTL_VERSION###/k0sctl-linux-arm64
+              chmod +x   target/k0sctl
+            description: pull k0sctl binary
