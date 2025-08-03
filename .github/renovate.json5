@@ -4,8 +4,11 @@
     "config:recommended",
     "helpers:pinGitHubActionDigests"
   ],
+  automerge: true,
   platformAutomerge: true,
   ignoreUnstable: false,
+  separateMajorMinor: false,
+  dependencyDashboard: true,
   assignees: [
     "@A1994SC"
   ],
@@ -29,7 +32,6 @@
       matchPackageNames: [
         "*"
       ],
-      automerge: true,
     },
     {
       matchManagers: ["github-actions"],
@@ -41,11 +43,8 @@
       matchPackageNames: [
         "*"
       ],
-      automerge: true,
     }
   ],
-  separateMajorMinor: false,
-  dependencyDashboard: true,
   customManagers: [
     {
       customType: "regex",
