@@ -6,9 +6,9 @@ package:
     set:
       version: v0.0.0-k0s.0
       # renovate: datasource=github-releases depName=k0sproject/k0s versioning=regex:^v(?<major>1)\.(?<minor>32)\.(?<patch>\d+)\+k0s\.(?<build>\d+)$
-      k0s_version: v1.32.7+k0s.0
-      k0s_sha_amd64: dc2383ec89ea023dfa69681116680d9e041fd53c0f038b294d3f2e452d537ff2
-      k0s_sha_arm64: 625d89c00e8236b812a24955894077188e91213e9d1dc9440f0e4e6e6db53ffb
+      k0s_version: v1.32.8+k0s.0
+      k0s_sha_amd64: ecca8e04c966f71d41543f8e9568768d73cd886b97c3911b6d2b205aa6452c38
+      k0s_sha_arm64: fd30aa250ae5b5077ebc312287618d2055df31d978412c1e611181de90448a04
       # renovate: datasource=github-releases depName=k0sproject/k0sctl versioning=regex:^v(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)$
       k0sctl_version: v0.25.1
       k0sctl_sha_amd64: 3ebe6833e600afa79a1a51d2537364db88ac2fab85827cb1c75909331190ff09
