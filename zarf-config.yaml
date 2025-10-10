@@ -6,7 +6,7 @@ package:
     set:
       version: v0.0.0-k0s.0
       # renovate: datasource=github-releases depName=k0sproject/k0s versioning=regex:^v(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)\+k0s\.(?<build>\d+)$
-      k0s_version: v1.33.4+k0s.0
+      k0s_version: v1.34.1+k0s.0
       k0s_sha_amd64: b1da41956075e0491dfcec5ac805171e9bfb671a3ca3b69387f8575255669db8
       k0s_sha_arm64: 0d172e34190577838eb929186a5028343753486416925b62fe4b7c36102e5dd4
       # renovate: datasource=github-releases depName=k0sproject/k0sctl versioning=regex:^v(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)$
