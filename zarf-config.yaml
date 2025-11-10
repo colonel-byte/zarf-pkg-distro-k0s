@@ -7,9 +7,9 @@ package:
       version: v0.0.0-k0s.0
       # renovate: datasource=github-releases depName=k0sproject/k0s versioning=regex:^v(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)\+k0s\.(?<build>\d+)$
       k0s_version: v1.34.1+k0s.1
-      k0s_sha_amd64: ad6c7066c9dd4b474cdb6432fcf50194785e638fb0d6bf90766eb5e534d75671
-      k0s_sha_arm64: aabd4fbc4c30f03911e6dfe7d801f753ce64726af4f2dbcb6465b89e80b90e9f
+      k0s_sha_amd64: d2e7056b0d1ccc4ca7937614436210d8778c02eb9cee776fd3aa1d5f876324e7
+      k0s_sha_arm64: 41292f087ecbced1f4fa73d88dcbea33aeb3b74f281108cfc3540bc19994b3ad
       # renovate: datasource=github-releases depName=k0sproject/k0sctl versioning=regex:^v(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)$
       k0sctl_version: v0.27.0
-      k0sctl_sha_amd64: 3ebe6833e600afa79a1a51d2537364db88ac2fab85827cb1c75909331190ff09
-      k0sctl_sha_arm64: 59fef485cccc6211cc752ba22869b1b970af8db3e5ec648edff816bb06c8818a
+      k0sctl_sha_amd64: 54acd2c8feb98821cc8c541ec4a0a151478997f34e1a3f9d3dec7a4369712ca9
+      k0sctl_sha_arm64: c8ba1738fafd75eb97ebad8cbcaa2dc44d702417be18245e8bae735f4a86e82c
