@@ -1,0 +1,66 @@
+name: Release Zarf Package
+description: Reusable actions release for zarf package
+inputs:
+  github_token:
+    description: github token
+    required: true
+  docker_hub_token:
+    description: docker-hub token
+    required: true
+  docker_hub_user:
+    description: docker-hub username
+    required: true
+  architecture:
+    description: zarf package architecture
+    required: true
+  cosign_key:
+    description: Cosign Key
+    required: true
+  cosign_pass:
+    description: Cosign Key
+    required: true
+runs:
+  using: composite
+  steps:
+    - name: Checkout
+      uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      with:
+        fetch-depth: 0
+
+    - name: Get git info
+      shell: bash
+      id: describe
+      run: |-
+        echo "git_describe=$(git describe --first-parent --tags)" >> "$GITHUB_OUTPUT"
+
+    - name: Install The Latest Release Version of Zarf
+      uses: zarf-dev/setup-zarf@10e539efed02f75ec39eb8823e22a5c795f492ae # v1.0.1
+
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@5e57cd118135c172c3672efd75eb46360885c0ef # v3.6.0
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ inputs.github_token }}
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@5e57cd118135c172c3672efd75eb46360885c0ef # v3.6.0
+      with:
+        registry: docker.io
+        username: ${{ inputs.docker_hub_user }}
+        password: ${{ inputs.docker_hub_token }}
+
+    - name: Package Zarf package
+      shell: bash
+      run: |-
+        zarf package create \
+          --confirm . \
+          --architecture ${{ inputs.architecture }} \
+          --set version=${{ steps.describe.outputs.git_describe }}
+
+    - name: Publish Zarf package
+      shell: bash
+      env:
+        COSIGN_KEY: ${{ inputs.cosign_key }}
+      run: |-
+        zarf package publish --signing-key env://COSIGN_KEY --signing-key-pass ${{ inputs.cosign_pass }} zarf-*.zst oci://ghcr.io/${{ github.repository_owner }}/zarf
