@@ -25,42 +25,12 @@ jobs:
           - amd64
           - arm64
     steps:
-      - name: Checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - name: action
+        uses: colonel-byte/zarf-pkg-distro-k0s/.github/reusable/release@main
         with:
-          fetch-depth: 0
-
-      - name: Get git info
-        id: describe
-        run: |-
-          echo "git_describe=$(git describe --first-parent --tags)" >> "$GITHUB_OUTPUT"
-
-      - name: Install The Latest Release Version of Zarf
-        uses: zarf-dev/setup-zarf@10e539efed02f75ec39eb8823e22a5c795f492ae # v1.0.1
-
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@5e57cd118135c172c3672efd75eb46360885c0ef # v3.6.0
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Login to Docker Hub
-        uses: docker/login-action@5e57cd118135c172c3672efd75eb46360885c0ef # v3.6.0
-        with:
-          registry: docker.io
-          username: ${{ secrets.DOCKER_HUB_USER }}
-          password: ${{ secrets.DOCKER_HUB_TOKEN }}
-
-      - name: Package Zarf package
-        run: |-
-          zarf package create \
-            --confirm . \
-            --architecture ${{ matrix.arch }} \
-            --set version=${{ steps.describe.outputs.git_describe }}
-
-      - name: Publish Zarf package
-        run: |-
-          zarf package publish --signing-key env://COSIGN_KEY --signing-key-pass ${{ secrets.COSIGN_PASS }} zarf-*.zst oci://ghcr.io/${{ github.repository_owner }}/zarf
-        env:
-          COSIGN_KEY: ${{ secrets.COSIGN_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          docker_hub_token: ${{ secrets.DOCKER_HUB_TOKEN }}
+          docker_hub_user: ${{ secrets.DOCKER_HUB_USER }}
+          architecture: ${{ matrix.arch }}
+          cosign_key: ${{ secrets.COSIGN_KEY }}
+          cosign_pass: ${{ secrets.COSIGN_PASS }}
