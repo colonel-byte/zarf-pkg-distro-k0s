@@ -36,23 +36,23 @@ runs:
         author_name: renovate[bot]
         author_email: <29139614+renovate[bot]@users.noreply.github.com>
 
-    - name: Sleep for 30 seconds
-      shell: bash
-      run: |-
-        sleep 30
+    # - name: Sleep for 30 seconds
+    #   shell: bash
+    #   run: |-
+    #     sleep 30
 
-    - name: Approve a PR
-      shell: bash
-      env:
-        PR_URL: ${{ github.event.pull_request.html_url }}
-        GITHUB_TOKEN: ${{ github.token }}
-      run: |-
-        gh pr review --approve "$PR_URL"
+    # - name: Approve a PR
+    #   shell: bash
+    #   env:
+    #     PR_URL: ${{ github.event.pull_request.html_url }}
+    #     GITHUB_TOKEN: ${{ github.token }}
+    #   run: |-
+    #     gh pr review --approve "$PR_URL"
 
-    - name: Enable auto-merge for Dependabot PRs
-      shell: bash
-      env:
-        PR_URL: ${{ github.event.pull_request.html_url }}
-        GITHUB_TOKEN: ${{ github.token }}
-      run: |-
-        gh pr merge --auto --rebase "$PR_URL"
+    # - name: Enable auto-merge for Dependabot PRs
+    #   shell: bash
+    #   env:
+    #     PR_URL: ${{ github.event.pull_request.html_url }}
+    #     GITHUB_TOKEN: ${{ github.token }}
+    #   run: |-
+    #     gh pr merge --auto --rebase "$PR_URL"

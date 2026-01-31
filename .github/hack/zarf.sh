@@ -38,8 +38,7 @@ for arch in "${ARCH[@]}"; do
   yq -i "$yq_sha" zarf-config.yaml
 done
 
-rm -rf   files
-mkdir -p files
+rm -rf   files/airgap-images-list.txt
 
 echo "::debug::pulling air-gap image list"
 curl ${GITHUB_TOKEN:+" -u \":$GITHUB_TOKEN\""} -s -L -o files/airgap-images-list.txt https://github.com/k0sproject/k0s/releases/download/$K0S_VERSION/airgap-images-list.txt
