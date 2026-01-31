@@ -35,12 +35,12 @@
     },
     {
       matchDatasources: [
-        "custom.\"cilium\"",
-        "custom.\"cilium-envoy\"",
-        "custom.ciliumHubble",
-        "custom.ciliumUIBack",
-        "custom.ciliumUIFront",
-        "custom.ciliumOperator",
+        "custom.cilium",
+        "custom.cilium-envoy",
+        "custom.hubble-relay",
+        "custom.hubble-ui-backend",
+        "custom.hubble-ui",
+        "custom.operator-generic",
       ],
       addLabels: [
         "renovate/oci"
@@ -48,7 +48,7 @@
       groupName: "all cilium dependencies",
       groupSlug: "all-cilium",
       matchPackageNames: [
-        "*"
+        "quay.io/cilium/*"
       ],
     },
     {
