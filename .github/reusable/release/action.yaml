@@ -53,12 +53,22 @@ runs:
         username: ${{ inputs.docker_hub_user }}
         password: ${{ inputs.docker_hub_token }}
 
-    - name: Package Zarf package
+    - name: Package Zarf package, base
       shell: bash
+      if: ${{ inputs.zarf_flavor == 'vanilla' }}
       run: |-
         zarf package create \
           --confirm . \
-          --flavor="${{ inputs.zarf_flavor == 'vanilla' && '' || inputs.zarf_flavor }}" \
+          --architecture ${{ inputs.architecture }} \
+          --set version=${{ steps.describe.outputs.git_describe }}
+
+    - name: Package Zarf package, flavor
+      shell: bash
+      if: ${{ inputs.zarf_flavor != 'vanilla' }}
+      run: |-
+        zarf package create \
+          --confirm . \
+          --flavor="${{ inputs.zarf_flavor }}" \
           --architecture ${{ inputs.architecture }} \
           --set version=${{ steps.describe.outputs.git_describe }}
 
