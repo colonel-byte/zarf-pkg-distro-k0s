@@ -18,7 +18,8 @@ jobs:
         with:
           use-regex: true
           packages: "zarf/distro-k0s"
-          exclude-tags: "^v\\d+\\.\\d+\\.\\d+-k0s\\.\\d+$"
+          exclude-tags: |-
+            ^v\d+\.\d+\.\d+-k0s\.\d+(-cni-cilium)?$
           token: '${{ secrets.GITHUB_TOKEN }}'
 
       - name: Validate images
