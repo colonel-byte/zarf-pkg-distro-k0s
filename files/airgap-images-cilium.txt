@@ -1,12 +1,12 @@
-# renovate-cilium: depName=envoy.image.tag
+# renovate-cilium: imagePath=envoy.image.tag
 quay.io/cilium/cilium-envoy:v1.35.1
-# renovate-cilium: depName=image.tag
+# renovate-cilium: imagePath=image.tag
 quay.io/cilium/cilium:v1.18.5
-# renovate-cilium: depName=hubble.relay.image.tag
+# renovate-cilium: imagePath=hubble.relay.image.tag
 quay.io/cilium/hubble-relay:v1.18.1
-# renovate-cilium: depName=hubble.ui.backend.image.tag
+# renovate-cilium: imagePath=hubble.ui.backend.image.tag
 quay.io/cilium/hubble-ui-backend:v0.13.1
-# renovate-cilium: depName=hubble.ui.frontend.image.tag
+# renovate-cilium: imagePath=hubble.ui.frontend.image.tag
 quay.io/cilium/hubble-ui:v0.13.1
-# renovate-cilium: depName=operator.image.tag
+# renovate-cilium: imagePath=operator.image.tag
 quay.io/cilium/operator-generic:v1.18.1

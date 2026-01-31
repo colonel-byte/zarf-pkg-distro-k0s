@@ -85,7 +85,7 @@
       ],
       datasourceTemplate: "git-tags",
       depNameTemplate: "https://github.com/cilium/cilium.git",
-      versioningTemplate: "semver",
+      versioningTemplate: "{{ versioning }}",
     },
     {
       customType: "regex",
@@ -97,7 +97,7 @@
         "/(^|/).+\\.txt$/"
       ],
       matchStrings: [
-        "(?m:renovate-cilium: depName=(?<depName>\\S+)\\n(?<packageName>.+):(?<currentValue>.+)$)"
+        "(?m:renovate-cilium: imagePath=(?<packageName>\\S+)\\n(?<depName>.+):(?<currentValue>.+)$)"
       ],
       versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
     },
