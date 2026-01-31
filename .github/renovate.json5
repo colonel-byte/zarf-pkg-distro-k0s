@@ -43,7 +43,22 @@
       matchPackageNames: [
         "*"
       ],
-    }
+    },
+    {
+      customType: "regex",
+      description: [
+        "Process custom dependencies"
+      ],
+      managerFilePatterns: [
+        "/(^|/)\\.github/renovate.json(5)?$/"
+      ],
+      matchStrings: [
+        "(?m:renovate:( versioning=(?<versioning>\\S+))?\\n\\s+defaultRegistryUrlTemplate.+?(?<currentValue>v?(?:[0-9]+\\.?){3}))"
+      ],
+      datasourceTemplate: "git-tags",
+      depNameTemplate: "https://github.com/cilium/cilium.git",
+      versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
+    },
   ],
   customManagers: [
     {
@@ -59,5 +74,29 @@
       ],
       versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
     },
+    {
+      customType: "regex",
+      description: [
+        "Process custom dependencies"
+      ],
+      "datasourceTemplate": "custom.cilium",
+      managerFilePatterns: [
+        "/(^|/).+\\.txt$/"
+      ],
+      matchStrings: [
+        "(?m:renovate-cilium: depName=(?<depName>\\S+)\\n.+(.+:)(?<currentValue>.+)$)"
+      ],
+      versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
+    },
   ],
+  customDatasources: {
+    cilium: {
+      // renovate: versioning=regex:^v?(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)$
+      defaultRegistryUrlTemplate: "https://raw.githubusercontent.com/cilium/cilium/refs/tags/v1.18.6/install/kubernetes/cilium/values.yaml",
+      format: "yaml",
+      transformTemplates: [
+        "({\"releases\": [{\"version\": {{ packageName }}, \"sourceUrl\": \"https://github.com/cilium/cilium\"}]})"
+      ]
+    }
+  }
 }

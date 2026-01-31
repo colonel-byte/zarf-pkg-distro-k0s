@@ -1,0 +1,14 @@
+---
+# yaml-language-server: $schema=https://raw.githubusercontent.com/zarf-dev/zarf/main/zarf.schema.json
+kind: ZarfPackageConfig
+metadata:
+  name: distro-k0s-cni-cilium
+components:
+  - name: find-images
+    charts:
+      - name: cilium
+        url: oci://quay.io/cilium/charts/cilium
+        version: "###ZARF_PKG_TMPL_CILIUM_CHART_VERSION###"
+        namespace: kube-system
+        valuesFiles:
+          - values.yaml
