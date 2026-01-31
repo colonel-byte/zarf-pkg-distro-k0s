@@ -44,21 +44,6 @@
         "*"
       ],
     },
-    {
-      customType: "regex",
-      description: [
-        "Process custom dependencies"
-      ],
-      managerFilePatterns: [
-        "/(^|/)\\.github/renovate.json(5)?$/"
-      ],
-      matchStrings: [
-        "(?m:renovate:( versioning=(?<versioning>\\S+))?\\n\\s+defaultRegistryUrlTemplate.+?(?<currentValue>v?(?:[0-9]+\\.?){3}))"
-      ],
-      datasourceTemplate: "git-tags",
-      depNameTemplate: "https://github.com/cilium/cilium.git",
-      versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
-    },
   ],
   customManagers: [
     {
@@ -73,6 +58,21 @@
         "(?m:renovate: datasource=(?<datasource>.+) depName=(?<depName>\\S+)( versioning=(?<versioning>\\S+))?\\n.+(version: )(?<currentValue>(.+))$)"
       ],
       versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
+    },
+    {
+      customType: "regex",
+      description: [
+        "Process custom dependencies"
+      ],
+      managerFilePatterns: [
+        "/(^|/)\\.github/renovate.json(5)?$/"
+      ],
+      matchStrings: [
+        "(?m:renovate:( versioning=(?<versioning>\\S+))?\\n\\s+defaultRegistryUrlTemplate.+?(?<currentValue>v?(?:[0-9]+\\.?){3}))"
+      ],
+      datasourceTemplate: "git-tags",
+      depNameTemplate: "https://github.com/cilium/cilium.git",
+      versioningTemplate: "semver",
     },
     {
       customType: "regex",
