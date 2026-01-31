@@ -97,7 +97,7 @@
         "/(^|/).+\\.txt$/"
       ],
       matchStrings: [
-        "(?m:renovate-cilium: imagePath=(?<packageName>\\S+)\\n(?<depName>.+):(?<currentValue>.+)$)"
+        "(?m:renovate-cilium: imagePath=(?<imagePath>\\S+)\\n(?<packageName>.+):(?<currentValue>.+)$)"
       ],
       versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
     },
@@ -108,7 +108,7 @@
       defaultRegistryUrlTemplate: "https://raw.githubusercontent.com/cilium/cilium/refs/tags/v1.18.6/install/kubernetes/cilium/values.yaml",
       format: "yaml",
       transformTemplates: [
-        "({\"releases\": [{\"version\": {{ depName }}, \"sourceUrl\": {{ packageName }}}]})"
+        "({\"releases\": [{\"version\": {{ imagePath }}, \"sourceUrl\": {{ packageName }}}]})"
       ]
     }
   }
