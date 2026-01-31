@@ -97,7 +97,7 @@
         "/(^|/).+\\.txt$/"
       ],
       matchStrings: [
-        "(?m:quay.io/cilium/cilium-envoy:(?<currentValue>.+)$)"
+        "(?m:^quay.io/cilium/cilium-envoy:(?<currentValue>.+)$)"
       ],
       versioningTemplate: "semver",
     },

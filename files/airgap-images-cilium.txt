@@ -1,12 +1,6 @@
-# renovate-cilium: imagePath=envoy.image.tag
 quay.io/cilium/cilium-envoy:v1.35.1
-# renovate-cilium: imagePath=image.tag
 quay.io/cilium/cilium:v1.18.5
-# renovate-cilium: imagePath=hubble.relay.image.tag
 quay.io/cilium/hubble-relay:v1.18.1
-# renovate-cilium: imagePath=hubble.ui.backend.image.tag
 quay.io/cilium/hubble-ui-backend:v0.13.1
-# renovate-cilium: imagePath=hubble.ui.frontend.image.tag
 quay.io/cilium/hubble-ui:v0.13.1
-# renovate-cilium: imagePath=operator.image.tag
 quay.io/cilium/operator-generic:v1.18.1
