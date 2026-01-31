@@ -92,7 +92,7 @@
       description: [
         "Process custom dependencies"
       ],
-      "datasourceTemplate": "custom.cilium",
+      datasourceTemplate: "custom.cilium",
       managerFilePatterns: [
         "/(^|/).+\\.txt$/"
       ],
@@ -108,7 +108,7 @@
       defaultRegistryUrlTemplate: "https://raw.githubusercontent.com/cilium/cilium/refs/tags/v1.18.6/install/kubernetes/cilium/values.yaml",
       format: "yaml",
       transformTemplates: [
-        "({\"releases\": [{\"version\": {{ imagePath }}, \"sourceUrl\": {{ packageName }}}]})"
+        "({\"releases\": [{\"version\": {{ imagePath }}}]})"
       ]
     }
   }
