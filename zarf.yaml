@@ -80,16 +80,15 @@ components:
     actions:
       onDeploy:
         before:
-          - description: remove existing cached images
+          - description: remove existing cached k0sproject images
             cmd: |-
-              rm -rf /var/lib/k0s/images
+              rm -rf /var/lib/k0s/images/quay.io_k0sproject_*
       onCreate:
         before:
           - description: pull images
             cmd: |-
               rm -rf   target
               mkdir -p target
-              echo ""
 
               for img in `cat ./files/airgap-images-list.txt | sort`; do
                 export TAR="$(echo $img | sed -E 's/\//_/g; s/:.+$//g').tar"
@@ -107,18 +106,111 @@ components:
     actions:
       onDeploy:
         before:
-          - description: remove existing cached images
+          - description: remove existing cached k0sproject images
             cmd: |-
-              rm -rf /var/lib/k0s/images
+              rm -rf /var/lib/k0s/images/quay.io_k0sproject_*
       onCreate:
         before:
           - description: pull images
             cmd: |-
               rm -rf   target
               mkdir -p target
-              echo ""
 
               for img in `cat ./files/airgap-images-list.txt | sort`; do
+                export TAR="$(echo $img | sed -E 's/\//_/g; s/:.+$//g').tar"
+                echo "pulling $img"
+                ./zarf tools registry pull  --platform "linux/arm64" $img ./target/$TAR
+              done
+  - name: cni-cilium-binary
+    required: true
+    files:
+      - source: target/cilium-linux-amd64.tar.gz
+        extractPath: cilium
+        target: /var/lib/k0s/bin/cilium-cli
+        executable: true
+    only:
+      flavor: cni-cilium
+      cluster:
+        architecture: amd64
+    actions:
+      onCreate:
+        before:
+          - cmd: |-
+              rm -rf   target
+              mkdir -p target
+              echo https://github.com/cilium/cilium-cli/releases/download/###ZARF_PKG_TMPL_CILIUM_CLI_VERSION###/cilium-linux-amd64.tar.gz
+              curl -L -o ./target/cilium-linux-amd64.tar.gz https://github.com/cilium/cilium-cli/releases/download/###ZARF_PKG_TMPL_CILIUM_CLI_VERSION###/cilium-linux-amd64.tar.gz
+            description: pull cilium-cli tar-ball
+  - name: cni-cilium-binary
+    required: true
+    files:
+      - source: target/cilium-linux-arm64.tar.gz
+        extractPath: cilium
+        target: /var/lib/k0s/bin/cilium-cli
+        executable: true
+    only:
+      flavor: cni-cilium
+      cluster:
+        architecture: arm64
+    actions:
+      onCreate:
+        before:
+          - cmd: |-
+              rm -rf   target
+              mkdir -p target
+              echo https://github.com/cilium/cilium-cli/releases/download/###ZARF_PKG_TMPL_CILIUM_CLI_VERSION###/cilium-linux-arm64.tar.gz
+              curl -L -o ./target/cilium-linux-arm64.tar.gz https://github.com/cilium/cilium-cli/releases/download/###ZARF_PKG_TMPL_CILIUM_CLI_VERSION###/cilium-linux-arm64.tar.gz
+            description: pull cilium-cli tar-ball
+  - name: cni-cilium-images
+    required: true
+    only:
+      flavor: cni-cilium
+      cluster:
+        architecture: amd64
+    files:
+      - target: /var/lib/k0s/images
+        source: target
+    actions:
+      onDeploy:
+        before:
+          - description: remove existing cached cilium images
+            cmd: |-
+              rm -rf /var/lib/k0s/images/quay.io_cilium_*
+      onCreate:
+        before:
+          - description: pull images
+            cmd: |-
+              rm -rf   target
+              mkdir -p target
+
+              for img in `cat ./files/airgap-images-cilium.txt | grep -iv "#" | sort`; do
+                export TAR="$(echo $img | sed -E 's/\//_/g; s/:.+$//g').tar"
+                echo "pulling $img"
+                ./zarf tools registry pull  --platform "linux/amd64" $img ./target/$TAR
+              done
+  - name: cni-cilium-images
+    required: true
+    only:
+      flavor: cni-cilium
+      cluster:
+        architecture: arm64
+    files:
+      - target: /var/lib/k0s/images
+        source: target
+    actions:
+      onDeploy:
+        before:
+          - description: remove existing cached cilium images
+            cmd: |-
+              rm -rf /var/lib/k0s/images/quay.io_cilium_*
+      onCreate:
+        before:
+          - description: pull images
+            cmd: |-
+              rm -rf   target
+              mkdir -p target
+
+              for img in `cat ./files/airgap-images-cilium.txt | grep -iv "#" | sort`; do
                 export TAR="$(echo $img | sed -E 's/\//_/g; s/:.+$//g').tar"
                 echo "pulling $img"
                 ./zarf tools registry pull  --platform "linux/arm64" $img ./target/$TAR
