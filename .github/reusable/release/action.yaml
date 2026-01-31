@@ -21,7 +21,7 @@ inputs:
     required: true
   zarf_flavor:
     description: Zarf flavor
-    default: ""
+    default: vanilla
 runs:
   using: composite
   steps:
@@ -58,7 +58,7 @@ runs:
       run: |-
         zarf package create \
           --confirm . \
-          --flavor ${{ inputs.zarf_flavor }} \
+          --flavor="${{ inputs.zarf_flavor == 'vanilla' && '' || inputs.zarf_flavor }}" \
           --architecture ${{ inputs.architecture }} \
           --set version=${{ steps.describe.outputs.git_describe }}
 
