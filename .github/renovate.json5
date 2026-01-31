@@ -35,7 +35,7 @@
     },
     {
       matchDatasources: [
-        "custom.cilium",
+        "custom.ciliumEnvoy",
       ],
       addLabels: [
         "renovate/oci"
@@ -92,23 +92,23 @@
       description: [
         "Process custom dependencies"
       ],
-      datasourceTemplate: "custom.cilium",
+      datasourceTemplate: "custom.ciliumEnvoy",
       managerFilePatterns: [
         "/(^|/).+\\.txt$/"
       ],
       matchStrings: [
-        "(?m:renovate-cilium: imagePath=(?<imagePath>\\S+)\\n(?<packageName>.+):(?<currentValue>.+)$)"
+        "(?m:quay.io/cilium/cilium-envoy:(?<currentValue>.+)$)"
       ],
-      versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
+      versioningTemplate: "semver",
     },
   ],
   customDatasources: {
-    cilium: {
+    ciliumEnvoy: {
       // renovate: versioning=regex:^v(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)$
       defaultRegistryUrlTemplate: "https://raw.githubusercontent.com/cilium/cilium/refs/tags/v1.18.6/install/kubernetes/cilium/values.yaml",
       format: "yaml",
       transformTemplates: [
-        "({\"releases\": [{\"version\": {{ imagePath }}}]})"
+        "({\"sourceUrl\": \"quay.io/cilium/cilium-envoy\", \"releases\": [{\"version\": envoy.image.tag}]})"
       ]
     }
   }
