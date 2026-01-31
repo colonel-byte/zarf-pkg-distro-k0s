@@ -1,7 +1,12 @@
-quay.io/cilium/cilium-envoy:v1.35.9-1767794330-db497dd19e346b39d81d7b5c0dedf6c812bcc5c9
-#renovate-cilium: depName=image.tag
+# renovate-cilium: depName=envoy.image.tag
+quay.io/cilium/cilium-envoy:v1.35.1
+# renovate-cilium: depName=image.tag
 quay.io/cilium/cilium:v1.18.5
-quay.io/cilium/hubble-relay:v1.18.6
-quay.io/cilium/hubble-ui-backend:v0.13.3
-quay.io/cilium/hubble-ui:v0.13.3
-quay.io/cilium/operator-generic:v1.18.6
+# renovate-cilium: depName=hubble.relay.image.tag
+quay.io/cilium/hubble-relay:v1.18.1
+# renovate-cilium: depName=hubble.ui.backend.image.tag
+quay.io/cilium/hubble-ui-backend:v0.13.1
+# renovate-cilium: depName=hubble.ui.frontend.image.tag
+quay.io/cilium/hubble-ui:v0.13.1
+# renovate-cilium: depName=operator.image.tag
+quay.io/cilium/operator-generic:v1.18.1
