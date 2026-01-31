@@ -34,6 +34,19 @@
       ],
     },
     {
+      matchDatasources: [
+        "custom.cilium",
+      ],
+      addLabels: [
+        "renovate/oci"
+      ],
+      groupName: "all cilium dependencies",
+      groupSlug: "all-cilium",
+      matchPackageNames: [
+        "*"
+      ],
+    },
+    {
       matchManagers: ["github-actions"],
       addLabels: [
         "renovate/action"
@@ -84,7 +97,7 @@
         "/(^|/).+\\.txt$/"
       ],
       matchStrings: [
-        "(?m:renovate-cilium: depName=(?<depName>\\S+)\\n.+(.+:)(?<currentValue>.+)$)"
+        "(?m:renovate-cilium: depName=(?<depName>\\S+)\\n(?<packageName>.+):(?<currentValue>.+)$)"
       ],
       versioningTemplate: "{{#if versioning}}{{{versioning}}}{{else}}semver{{/if}}",
     },
@@ -95,7 +108,7 @@
       defaultRegistryUrlTemplate: "https://raw.githubusercontent.com/cilium/cilium/refs/tags/v1.18.6/install/kubernetes/cilium/values.yaml",
       format: "yaml",
       transformTemplates: [
-        "({\"releases\": [{\"version\": {{ packageName }}, \"sourceUrl\": \"https://github.com/cilium/cilium\"}]})"
+        "({\"releases\": [{\"version\": {{ depName }}, \"sourceUrl\": {{ packageName }}}]})"
       ]
     }
   }
