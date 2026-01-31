@@ -1,7 +1,7 @@
 # renovate-cilium: depName=envoy.image.tag
 quay.io/cilium/cilium-envoy:v1.35.1
 # renovate-cilium: depName=image.tag
-quay.io/cilium/cilium:v1.18.5
+quay.io/cilium/cilium:v1.18.6
 # renovate-cilium: depName=hubble.relay.image.tag
 quay.io/cilium/hubble-relay:v1.18.1
 # renovate-cilium: depName=hubble.ui.backend.image.tag
