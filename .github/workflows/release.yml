@@ -21,6 +21,9 @@ jobs:
       fail-fast: false
       max-parallel: 1
       matrix:
+        flavor:
+          - ""
+          - cni-cilium
         arch:
           - amd64
           - arm64
@@ -32,5 +35,6 @@ jobs:
           docker_hub_token: ${{ secrets.DOCKER_HUB_TOKEN }}
           docker_hub_user: ${{ secrets.DOCKER_HUB_USER }}
           architecture: ${{ matrix.arch }}
+          zarf_flavor: ${{ matrix.flavor }}
           cosign_key: ${{ secrets.COSIGN_KEY }}
           cosign_pass: ${{ secrets.COSIGN_PASS }}

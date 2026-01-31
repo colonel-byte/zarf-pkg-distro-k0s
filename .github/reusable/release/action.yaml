@@ -19,6 +19,9 @@ inputs:
   cosign_pass:
     description: Cosign Key
     required: true
+  zarf_flavor:
+    description: Zarf flavor
+    default: ""
 runs:
   using: composite
   steps:
@@ -55,6 +58,7 @@ runs:
       run: |-
         zarf package create \
           --confirm . \
+          --flavor ${{ inputs.zarf_flavor }} \
           --architecture ${{ inputs.architecture }} \
           --set version=${{ steps.describe.outputs.git_describe }}
 
