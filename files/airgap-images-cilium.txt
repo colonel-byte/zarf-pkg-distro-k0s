@@ -1,6 +1,6 @@
-quay.io/cilium/cilium-envoy:v1.35.1
-quay.io/cilium/cilium:v1.18.1
-quay.io/cilium/hubble-relay:v1.18.1
-quay.io/cilium/hubble-ui-backend:v0.13.1
-quay.io/cilium/hubble-ui:v0.13.1
-quay.io/cilium/operator-generic:v1.18.1
+quay.io/cilium/cilium-envoy:v1.35.9-1767794330-db497dd19e346b39d81d7b5c0dedf6c812bcc5c9
+quay.io/cilium/cilium:v1.18.6
+quay.io/cilium/hubble-relay:v1.18.6
+quay.io/cilium/hubble-ui-backend:v0.13.3
+quay.io/cilium/hubble-ui:v0.13.3
+quay.io/cilium/operator-generic:v1.18.6
