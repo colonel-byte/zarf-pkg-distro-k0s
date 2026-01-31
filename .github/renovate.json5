@@ -99,6 +99,7 @@
       matchStrings: [
         "(?m:^quay.io/cilium/cilium-envoy:(?<currentValue>.+)$)"
       ],
+      depNameTemplate: "quay.io/cilium/cilium-envoy",
       versioningTemplate: "semver",
     },
   ],
