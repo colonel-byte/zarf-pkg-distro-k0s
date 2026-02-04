@@ -107,7 +107,7 @@
   customDatasources: {
     "cilium": {
       // renovate: versioning=regex:^v(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)$
-      defaultRegistryUrlTemplate: "https://raw.githubusercontent.com/cilium/cilium/refs/tags/v1.18.6/install/kubernetes/cilium/values.yaml",
+      defaultRegistryUrlTemplate: "https://raw.githubusercontent.com/cilium/cilium/refs/tags/v1.19.0/install/kubernetes/cilium/values.yaml",
       format: "yaml",
       transformTemplates: [
         "({\"sourceUrl\": \"quay.io/cilium/cilium\", \"releases\": [{\"version\": image.tag}]})"
@@ -115,7 +115,7 @@
     },
     "cilium-envoy": {
       // renovate: versioning=regex:^v(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)$
-      defaultRegistryUrlTemplate: "https://raw.githubusercontent.com/cilium/cilium/refs/tags/v1.18.6/install/kubernetes/cilium/values.yaml",
+      defaultRegistryUrlTemplate: "https://raw.githubusercontent.com/cilium/cilium/refs/tags/v1.19.0/install/kubernetes/cilium/values.yaml",
       format: "yaml",
       transformTemplates: [
         "({\"sourceUrl\": \"quay.io/cilium/cilium-envoy\", \"releases\": [{\"version\": envoy.image.tag}]})"
@@ -123,7 +123,7 @@
     },
     "hubble-relay": {
       // renovate: versioning=regex:^v(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)$
-      defaultRegistryUrlTemplate: "https://raw.githubusercontent.com/cilium/cilium/refs/tags/v1.18.6/install/kubernetes/cilium/values.yaml",
+      defaultRegistryUrlTemplate: "https://raw.githubusercontent.com/cilium/cilium/refs/tags/v1.19.0/install/kubernetes/cilium/values.yaml",
       format: "yaml",
       transformTemplates: [
         "({\"sourceUrl\": \"quay.io/cilium/hubble-relay\", \"releases\": [{\"version\": hubble.relay.image.tag}]})"
@@ -131,7 +131,7 @@
     },
     "hubble-ui-backend": {
       // renovate: versioning=regex:^v(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)$
-      defaultRegistryUrlTemplate: "https://raw.githubusercontent.com/cilium/cilium/refs/tags/v1.18.6/install/kubernetes/cilium/values.yaml",
+      defaultRegistryUrlTemplate: "https://raw.githubusercontent.com/cilium/cilium/refs/tags/v1.19.0/install/kubernetes/cilium/values.yaml",
       format: "yaml",
       transformTemplates: [
         "({\"sourceUrl\": \"quay.io/cilium/hubble-ui-backend\", \"releases\": [{\"version\": hubble.ui.backend.image.tag}]})"
@@ -139,7 +139,7 @@
     },
     "hubble-ui": {
       // renovate: versioning=regex:^v(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)$
-      defaultRegistryUrlTemplate: "https://raw.githubusercontent.com/cilium/cilium/refs/tags/v1.18.6/install/kubernetes/cilium/values.yaml",
+      defaultRegistryUrlTemplate: "https://raw.githubusercontent.com/cilium/cilium/refs/tags/v1.19.0/install/kubernetes/cilium/values.yaml",
       format: "yaml",
       transformTemplates: [
         "({\"sourceUrl\": \"quay.io/cilium/hubble-ui\", \"releases\": [{\"version\": hubble.ui.frontend.image.tag}]})"
@@ -147,7 +147,7 @@
     },
     "operator-generic": {
       // renovate: versioning=regex:^v(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)$
-      defaultRegistryUrlTemplate: "https://raw.githubusercontent.com/cilium/cilium/refs/tags/v1.18.6/install/kubernetes/cilium/values.yaml",
+      defaultRegistryUrlTemplate: "https://raw.githubusercontent.com/cilium/cilium/refs/tags/v1.19.0/install/kubernetes/cilium/values.yaml",
       format: "yaml",
       transformTemplates: [
         "({\"sourceUrl\": \"quay.io/cilium/operator-generic\", \"releases\": [{\"version\": operator.image.tag}]})"
