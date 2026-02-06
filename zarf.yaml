@@ -199,6 +199,27 @@ components:
                 echo "pulling $img"
                 ./zarf tools registry pull  --platform "linux/arm64" $img ./target/$TAR
               done
+  - name: cni-cilium-images
+    required: true
+    only:
+      flavor: cni-cilium
+    files:
+      - target: /var/lib/k0s/charts
+        source: charts
+    actions:
+      onDeploy:
+        before:
+          - description: remove existing cached cilium charts
+            cmd: |-
+              rm -rf /var/lib/k0s/charts/cilium-*
+      onCreate:
+        before:
+          - description: pull images
+            cmd: |-
+              rm -rf   target
+              mkdir -p target
+              helm pull --repo=https://helm.cilium.io/ cilium --version=###ZARF_PKG_TMPL_CILIUM_CHART_VERSION### --destination=target
+
   - name: k0sctl-binary
     required: false
     files:
