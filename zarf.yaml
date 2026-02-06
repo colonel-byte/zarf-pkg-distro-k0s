@@ -205,7 +205,7 @@ components:
       flavor: cni-cilium
     files:
       - target: /var/lib/k0s/charts
-        source: charts
+        source: target
     actions:
       onDeploy:
         before:
