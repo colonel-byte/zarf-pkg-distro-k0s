@@ -199,7 +199,7 @@ components:
                 echo "pulling $img"
                 ./zarf tools registry pull  --platform "linux/arm64" $img ./target/$TAR
               done
-  - name: cni-cilium-images
+  - name: cni-cilium-charts
     required: true
     only:
       flavor: cni-cilium
