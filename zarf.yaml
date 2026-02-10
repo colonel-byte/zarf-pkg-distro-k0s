@@ -33,12 +33,12 @@ components:
             description: pull k0s binary
       onDeploy:
         before:
-          - cmd: if [ "$(uname -m)" != "x86_64" ]; then echo "this package architecture is amd64, but the target system has a different architecture. These architectures must be the same" && exit 1; fi
-            description: Check that the host architecture matches the package architecture
+          - description: Check that the host architecture matches the package architecture
             maxRetries: 0
-          - cmd: ./zarf internal is-valid-hostname
-            maxRetries: 0
-            description: Check if the current system has a, RFC1123 compliant hostname
+            cmd: |-
+              if [ "$(uname -m)" != "x86_64" ]; then
+                echo "this package architecture is amd64, but the target system has a different architecture. These architectures must be the same" && exit 1;
+              fi
   - name: binary
     required: true
     files:
@@ -63,12 +63,12 @@ components:
             description: pull k0s binary
       onDeploy:
         before:
-          - cmd: if [ "$(uname -m)" != "x86_64" ]; then echo "this package architecture is amd64, but the target system has a different architecture. These architectures must be the same" && exit 1; fi
-            description: Check that the host architecture matches the package architecture
+          - description: Check that the host architecture matches the package architecture
             maxRetries: 0
-          - cmd: ./zarf internal is-valid-hostname
-            maxRetries: 0
-            description: Check if the current system has a, RFC1123 compliant hostname
+            cmd: |-
+              if [ "$(uname -m)" != "aarch64" ] && [ "$(uname -m)" != "arm64" ];
+                echo "this package architecture is arm64, but the target system has a different architecture. These architectures must be the same" && exit 1;
+              fi
   - name: images
     required: true
     only:
@@ -215,6 +215,26 @@ components:
                 echo "pulling $img"
                 ./zarf tools registry pull  --platform "linux/arm64" $img ./target/$TAR
               done
+  - name: cni-cilium-charts
+    required: true
+    only:
+      flavor: cni-cilium
+    files:
+      - target: /var/lib/k0s/charts
+        source: target
+    actions:
+      onDeploy:
+        before:
+          - description: remove existing cached cilium charts
+            cmd: |-
+              rm -rf /var/lib/k0s/charts/cilium-*
+      onCreate:
+        before:
+          - description: pull images
+            cmd: |-
+              rm -rf   target
+              mkdir -p target
+              helm pull --repo=https://helm.cilium.io/ cilium --version=###ZARF_PKG_TMPL_CILIUM_CHART_VERSION### --destination=target
   - name: k0sctl-binary
     required: false
     files:
