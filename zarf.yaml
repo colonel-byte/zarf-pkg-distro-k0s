@@ -236,7 +236,7 @@ components:
               mkdir -p target
               helm pull --repo=https://helm.cilium.io/ cilium --version=###ZARF_PKG_TMPL_CILIUM_CHART_VERSION### --destination=target
   - name: k0sctl-binary
-    required: false
+    required: true
     files:
       - source: target/k0sctl
         target: /var/lib/k0s/bin/k0sctl
@@ -255,7 +255,7 @@ components:
               chmod +x   target/k0sctl
             description: pull k0sctl binary
   - name: k0sctl-binary
-    required: false
+    required: true
     files:
       - source: target/k0sctl
         target: /var/lib/k0s/bin/k0sctl
