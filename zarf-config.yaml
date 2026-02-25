@@ -6,7 +6,7 @@ package:
     set:
       version: v0.0.0-k0s.0
       # renovate: datasource=github-releases depName=k0sproject/k0s versioning=regex:^v(?<major>1)\.(?<minor>32)\.(?<patch>\d+)\+k0s\.(?<build>\d+)$
-      k0s_version: v1.32.11+k0s.0
+      k0s_version: v1.32.12+k0s.1
       k0s_sha_amd64: 893ae37e79f81f8cf5dcdd85e4488fe2079f13f4e9593d6b60b2b4871bd6227e
       k0s_sha_arm64: ea3dd573b25fe17c2a30c25ad58dc2af890829e6eb74cdcba3dcf61124dbb45f
       # renovate: datasource=github-releases depName=k0sproject/k0sctl versioning=regex:^v(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)$
@@ -16,4 +16,4 @@ package:
       # renovate: datasource=docker depName=quay.io/cilium/charts/cilium versioning=regex:^v?(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)$
       cilium_chart_version: 1.19.1
       # renovate: datasource=github-releases depName=cilium/cilium-cli versioning=regex:^v(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)$
-      cilium_cli_version: v0.19.1
+      cilium_cli_version: v0.19.2
