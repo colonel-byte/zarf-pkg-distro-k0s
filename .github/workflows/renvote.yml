@@ -16,6 +16,6 @@ jobs:
     if: ${{ github.actor == 'renovate[bot]' }}
     steps:
       - name: action
-        uses: colonel-byte/zarf-pkg-distro-k0s/.github/reusable/renvote@main
+        uses: colonel-byte/zarf-pkg-distro-k0s/.github/reusable/renvote@dbc93ca8b7e5abc3df639330de69f8875ee49c44 # main
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
