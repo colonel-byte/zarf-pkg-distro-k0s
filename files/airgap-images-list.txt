@@ -1,6 +1,6 @@
-quay.io/k0sproject/calico-cni:v3.31.3-0
-quay.io/k0sproject/calico-kube-controllers:v3.31.3-0
-quay.io/k0sproject/calico-node:v3.31.3-0
+quay.io/k0sproject/calico-cni:v3.31.4-1
+quay.io/k0sproject/calico-kube-controllers:v3.31.4-1
+quay.io/k0sproject/calico-node:v3.31.4-1
 quay.io/k0sproject/coredns:1.14.1
 quay.io/k0sproject/apiserver-network-proxy-agent:v0.34.0-1
 quay.io/k0sproject/kube-proxy:v1.35.1
