@@ -7,8 +7,8 @@ package:
       version: v0.0.0-k0s.0
       # renovate: datasource=github-releases depName=k0sproject/k0s versioning=regex:^v(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)\+k0s\.(?<build>\d+)$
       k0s_version: v1.35.1+k0s.1
-      k0s_sha_amd64: a65ce7cc1a0645dfce517c582a875a14b9660b5913abfee4c0edf3dc7e169e78
-      k0s_sha_arm64: 2a66e1e369751a02824f9a572a6e2739b9a93adfc49772fccf1cf0345553bd80
+      k0s_sha_amd64: 0e94c22f4dc4351f27770a8553c9225c43a636b04c8fdc2b8c7fa79b3e05567d
+      k0s_sha_arm64: 2226291098c70cb36563dbef4ec90680f9c1b8f8c5232a414821e42042375953
       # renovate: datasource=github-releases depName=k0sproject/k0sctl versioning=regex:^v(?<major>\d+)\.(?<minor>\d+)\.(?<patch>\d+)$
       k0sctl_version: v0.28.0
       k0sctl_sha_amd64: 30776867c60a02f29edae7f8bb2eb72f48bd09392fe7b6cebb26d4dcb71ab33c
